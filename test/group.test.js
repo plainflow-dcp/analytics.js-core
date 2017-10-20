@@ -210,10 +210,10 @@ describe('group', function() {
         option: true,
         persist: true,
         cookie: {
-          key: 'ajs_group_id'
+          key: 'pfl_group_id'
         },
         localStorage: {
-          key: 'ajs_group_properties'
+          key: 'pfl_group_properties'
         }
       });
     });

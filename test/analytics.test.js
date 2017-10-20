@@ -338,19 +338,19 @@ describe('Analytics', function() {
         sinon.spy(analytics, 'identify');
       });
 
-      it('should parse `ajs_aid` and set anonymousId', function() {
+      it('should parse `pfl_aid` and set anonymousId', function() {
         sinon.spy(user, 'anonymousId');
-        analytics._parseQuery('?ajs_aid=123');
+        analytics._parseQuery('?pfl_aid=123');
         assert(user.anonymousId.calledWith('123'));
       });
 
-      it('should parse `ajs_uid` and call identify', function() {
-        analytics._parseQuery('?ajs_uid=123');
+      it('should parse `pfl_uid` and call identify', function() {
+        analytics._parseQuery('?pfl_uid=123');
         assert(analytics.identify.calledWith('123', {}));
       });
 
       it('should include traits in identify', function() {
-        analytics._parseQuery('?ajs_uid=123&ajs_trait_name=chris');
+        analytics._parseQuery('?pfl_uid=123&pfl_trait_name=chris');
         assert(analytics.identify.calledWith('123', { name: 'chris' }));
       });
     });
@@ -360,13 +360,13 @@ describe('Analytics', function() {
         sinon.spy(analytics, 'track');
       });
 
-      it('should parse `ajs_event` and call track', function() {
-        analytics._parseQuery('?ajs_event=test');
+      it('should parse `pfl_event` and call track', function() {
+        analytics._parseQuery('?pfl_event=test');
         assert(analytics.track.calledWith('test', {}));
       });
 
       it('should include properties in track', function() {
-        analytics._parseQuery('?ajs_event=Started+Trial&ajs_prop_plan=Silver');
+        analytics._parseQuery('?pfl_event=Started+Trial&pfl_prop_plan=Silver');
         assert(analytics.track.calledWith('Started Trial', { plan: 'Silver' }));
       });
     });

@@ -26,9 +26,9 @@ describe('user', function() {
     cookie.remove(cookieKey);
     store.remove(cookieKey);
     store.remove(localStorageKey);
-    store.remove('_sio');
-    cookie.remove('_sio');
-    rawCookie('_sio', null);
+    store.remove('_pfl');
+    cookie.remove('_pfl');
+    rawCookie('_pfl', null);
   });
 
   describe('()', function() {
@@ -43,15 +43,15 @@ describe('user', function() {
       assert(user.traits().trait === true);
     });
 
-    it('should pick the old "_sio" anonymousId', function() {
-      rawCookie('_sio', 'anonymous-id----user-id');
+    it('should pick the old "_pfl" anonymousId', function() {
+      rawCookie('_pfl', 'anonymous-id----user-id');
       var user = new User();
       assert(user.anonymousId() === 'anonymous-id');
     });
 
-    it('should not pick the old "_sio" if anonymous id is present', function() {
-      rawCookie('_sio', 'old-anonymous-id----user-id');
-      cookie.set('ajs_anonymous_id', 'new-anonymous-id');
+    it('should not pick the old "_pfl" if anonymous id is present', function() {
+      rawCookie('_pfl', 'old-anonymous-id----user-id');
+      cookie.set('pfl_anonymous_id', 'new-anonymous-id');
       assert(new User().anonymousId() === 'new-anonymous-id');
     });
 
@@ -61,7 +61,7 @@ describe('user', function() {
     });
 
     it('should not overwrite anonymous id', function() {
-      cookie.set('ajs_anonymous_id', 'anonymous');
+      cookie.set('pfl_anonymous_id', 'anonymous');
       assert(new User().anonymousId() === 'anonymous');
     });
   });
@@ -255,13 +255,13 @@ describe('user', function() {
       });
 
       it('should get an id from the store', function() {
-        store.set('ajs_anonymous_id', 'anon-id');
+        store.set('pfl_anonymous_id', 'anon-id');
         assert(user.anonymousId() === 'anon-id');
       });
 
       it('should set an id to the store', function() {
         user.anonymousId('anon-id');
-        assert(store.get('ajs_anonymous_id') === 'anon-id');
+        assert(store.get('pfl_anonymous_id') === 'anon-id');
       });
 
       it('should return anonymousId using the store', function() {
@@ -283,13 +283,13 @@ describe('user', function() {
       });
 
       it('should get an id from the memory', function() {
-        memory.set('ajs_anonymous_id', 'anon-id');
+        memory.set('pfl_anonymous_id', 'anon-id');
         assert(user.anonymousId() === 'anon-id');
       });
 
       it('should set an id to the memory', function() {
         user.anonymousId('anon-id');
-        assert(memory.get('ajs_anonymous_id') === 'anon-id');
+        assert(memory.get('pfl_anonymous_id') === 'anon-id');
       });
 
       it('should return anonymousId using the store', function() {
@@ -300,13 +300,13 @@ describe('user', function() {
 
     describe('when cookies are enabled', function() {
       it('should get an id from the cookie', function() {
-        cookie.set('ajs_anonymous_id', 'anon-id');
+        cookie.set('pfl_anonymous_id', 'anon-id');
         assert(user.anonymousId() === 'anon-id');
       });
 
       it('should set an id to the cookie', function() {
         user.anonymousId('anon-id');
-        assert(cookie.get('ajs_anonymous_id') === 'anon-id');
+        assert(cookie.get('pfl_anonymous_id') === 'anon-id');
       });
 
       it('should return anonymousId using the store', function() {
@@ -377,11 +377,11 @@ describe('user', function() {
         option: true,
         persist: true,
         cookie: {
-          key: 'ajs_user_id',
-          oldKey: 'ajs_user'
+          key: 'pfl_user_id',
+          oldKey: 'pfl_user'
         },
         localStorage: {
-          key: 'ajs_user_traits'
+          key: 'pfl_user_traits'
         }
       });
     });
@@ -414,7 +414,7 @@ describe('user', function() {
       user.anonymousId('anon-id');
       user.traits({ trait: true });
       user.logout();
-      assert(cookie.get('ajs_anonymous_id') === null);
+      assert(cookie.get('pfl_anonymous_id') === null);
       assert(user.id() === null);
       assert(user.traits(), {});
     });
