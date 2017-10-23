@@ -1,5 +1,5 @@
 'use strict';
 
 var mockGlobalAnalytics = {};
-global.analytics = mockGlobalAnalytics;
+global.plainflow = mockGlobalAnalytics;
 module.exports = mockGlobalAnalytics;

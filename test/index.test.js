@@ -14,8 +14,8 @@ describe('analytics', function() {
 
     beforeEach(function() {
       // Defined in test/support/global.js
-      previousAnalyticsGlobal = window.analytics;
-      assert(previousAnalyticsGlobal, 'test harness expected global.analytics to be defined but it is not');
+      previousAnalyticsGlobal = window.plainflow;
+      assert(previousAnalyticsGlobal, 'test harness expected global.plainflow to be defined but it is not');
     });
 
     afterEach(function() {
@@ -24,17 +24,17 @@ describe('analytics', function() {
 
     // TODO(ndhoule): this test and support/global.js are a little ghetto; we
     // should refactor this to run in a separate test suite
-    it('should restore global.analytics to its previous value', function() {
-      assert(global.analytics === previousAnalyticsGlobal);
+    it('should restore global.plainflow to its previous value', function() {
+      assert(global.plainflow === previousAnalyticsGlobal);
 
       var analytics = require('../lib');
-      global.analytics = analytics;
+      global.plainflow = analytics;
 
-      assert(global.analytics === analytics);
+      assert(global.plainflow === analytics);
 
-      var noConflictAnalytics = global.analytics.noConflict();
+      var noConflictAnalytics = global.plainflow.noConflict();
 
-      assert(global.analytics === previousAnalyticsGlobal);
+      assert(global.plainflow === previousAnalyticsGlobal);
       assert(noConflictAnalytics === analytics);
     });
   });
