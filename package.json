@@ -1,11 +1,11 @@
 {
   "name": "@plainflow-dcp/analytics.js-core",
   "author": "Plainflow <friends@plainflow.com>",
-  "version": "3.1.0-p1",
+  "version": "3.1.0-p2",
   "description": "The hassle-free way to integrate analytics into any web application.",
   "keywords": [
-    "pfanalytics",
-    "pfanalytics.js",
+    "analytics",
+    "plainflow.js",
     "plainflow",
     "plainflow.com"
   ],
